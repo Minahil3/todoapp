@@ -1,23 +1,26 @@
-import { useState } from "react"
+import { useState, useContext } from "react";
+import { TodoContext } from "../App";
 
-export function TodoInput (props){
-    const {handleAddTodo} = props
-   const [inputValue, setInputValue] = useState("")
+export function TodoInput() {
+  const { handleAddTodo } = useContext(TodoContext);
+  const [inputValue, setInputValue] = useState("");
 
-    return (
-        <div className = "input-container"> 
-        < input value ={inputValue} onChange={(e)=>{setInputValue(e.target.value)
-        }}placeholder = "Add task"/>
-        <button onClick = {()=>{
-            if (!inputValue) {return}
-            handleAddTodo(inputValue)
-            setInputValue("")
-        }} >
-            <i className="fa-solid fa-plus"></i> 
-
-        </button>
-
-
-        </div>
-    )
-} 
+  return (
+    <div className="input-container">
+      <input
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Add task"
+      />
+      <button
+        onClick={() => {
+          if (!inputValue) return;
+          handleAddTodo(inputValue);
+          setInputValue("");
+        }}
+      >
+        <i className="fa-solid fa-plus"></i>
+      </button>
+    </div>
+  );
+}
