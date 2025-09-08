@@ -1,15 +1,18 @@
-export function Header(props) {
+import { useContext } from "react";
+import { TodoContext } from "../App";
 
-    const {todos} = props 
+export function Header() {
+  const { todos } = useContext(TodoContext);
 
-    const todosLength= todos.length
+  const todosLength = todos.length;
+  const isTasksPlural = todosLength !== 1;
+  const tasksOrTask = isTasksPlural ? "tasks" : "task";
 
-    const isTasksPlural= todos.length !=1
-    const tasksOrTask = isTasksPlural ? 'tasks' : 'task'
-
-    return(
-        <header>
-            <h1 className="text-gradient"> You have {todosLength} open {tasksOrTask}</h1>
-        </header>
-    )
+  return (
+    <header>
+      <h1 className="text-gradient">
+        You have {todosLength} open {tasksOrTask}
+      </h1>
+    </header>
+  );
 }
